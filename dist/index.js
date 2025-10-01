@@ -7,6 +7,7 @@ export async function insertUser(input) {
         }
     });
     console.log(res);
+    return res;
 }
 export async function updateUser(username, { firstname, lastname }) {
     const res = await prisma.user.update({
@@ -19,6 +20,7 @@ export async function updateUser(username, { firstname, lastname }) {
         }
     });
     console.log(res);
+    return res;
 }
 export async function createTodo(input) {
     const res = await prisma.todo.create({
@@ -27,6 +29,7 @@ export async function createTodo(input) {
         }
     });
     console.log(res);
+    return res;
 }
 export async function getTodo(userId) {
     const res = await prisma.todo.findMany({
@@ -34,9 +37,11 @@ export async function getTodo(userId) {
             userId,
         }
     });
+    console.log(res);
+    return res;
 }
 export async function getTodoAndUserDetails(userId) {
-    const res = prisma.todo.findMany({
+    const res = await prisma.todo.findMany({
         where: {
             userId
         },
@@ -46,5 +51,6 @@ export async function getTodoAndUserDetails(userId) {
             description: true
         }
     });
+    return res;
 }
 //# sourceMappingURL=index.js.map

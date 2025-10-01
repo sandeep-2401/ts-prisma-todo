@@ -15,6 +15,7 @@ export async function insertUser(input : userInput){
         }
     })
     console.log(res)
+    return res
 }
 
 interface UpdateParams {
@@ -36,6 +37,7 @@ export async function updateUser(username : string, {
         }
     })
     console.log(res)
+    return res
 }
 
 interface createTodoInput {
@@ -50,6 +52,7 @@ export async function createTodo(input : createTodoInput){
         }
     })
     console.log(res)
+    return res
 }
 
 export async function getTodo(userId : number) {
@@ -58,10 +61,12 @@ export async function getTodo(userId : number) {
             userId,
         }
     })
+    console.log(res)
+    return res
 }
 
 export async function getTodoAndUserDetails(userId:number) {
-    const res = prisma.todo.findMany({
+    const res = await prisma.todo.findMany({
         where : {
             userId
         },
@@ -71,4 +76,5 @@ export async function getTodoAndUserDetails(userId:number) {
             description : true
         }
     })
-}
+    return res
+}   

@@ -4,7 +4,7 @@ const router = express.Router();
 router.post('/user', async (req, res) => {
     try {
         const response = await insertUser(req.body);
-        res.json(response);
+        return res.json(response);
     }
     catch (err) {
         console.log(err);
@@ -25,9 +25,10 @@ router.post('/todo', async (req, res) => {
         });
     }
 });
-router.get('todo', async (req, res) => {
+router.get('/userandtodo', async (req, res) => {
     try {
-        const response = await getTodoAndUserDetails(req.body);
+        const userId = Number(req.query.userId);
+        const response = await getTodoAndUserDetails(userId);
         res.json(response);
     }
     catch (err) {
@@ -37,9 +38,10 @@ router.get('todo', async (req, res) => {
         });
     }
 });
-router.get('todo', async (req, res) => {
+router.get('/todo', async (req, res) => {
     try {
-        const response = await getTodo(req.body);
+        const userId = Number(req.query.userId);
+        const response = await getTodo(userId);
         res.json(response);
     }
     catch (err) {
